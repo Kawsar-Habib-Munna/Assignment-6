@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Janala</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+  <style>
+    @font-face {
+      font-family: 'BanglaFont';
+      src: url('./assets/bangla-font.ttf');
+    }
+    .bangla {
+      font-family: 'BanglaFont';
+    }
+  </style>
+</head>
+<body class="font-sans scroll-smooth">
+
+  
+
+<!-- 🔒 Banner Section -->
+<section id="banner" class="min-h-screen bg-white flex flex-col md:flex-row items-center justify-between  py-16 max-w-7xl mx-auto px-4">
+    <!-- Left side: Title + Form -->
+    <div class="md:w-1/2 space-y-6 ">
+      <h1 class="text-5xl font-bold leading-snug">
+        <span class="text-blue-500">English</span> <span class="text-black">is Easy!!</span>
+      </h1>
+      <p class="text-gray-700 text-lg bangla">
+        আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা 
+        আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে 
+        অন্য একটি Level এ।
+      </p>
+      <form id="login-form" class="space-y-4 max-w-sm">
+        <input type="text" id="username" placeholder="Enter Your Name" class="input input-bordered w-full" />
+        <input type="password" id="password" placeholder="**********" class="input input-bordered w-full" />
+        <button type="submit" class="btn btn-primary w-full">Get Started</button>
+      </form>
+    </div>
+  
+    <!-- Right side: Image (replace with your actual image) -->
+    <div class="md:w-1/2 mt-10 md:mt-0">
+      <img src="assets/hero-student.png" alt="Banner Image" class="w-full" />
+    </div>
+  </section>
+  
+
+  
+ <!-- 🚀 Navbar -->
+<nav id="navbar" class=" hidden fixed top-0 left-0 w-full bg-white border-b z-50 ">
+    <div class="navbar max-w-7xl mx-auto px-4">
+      <!-- Left: Brand -->
+      <div class="flex-1">
+        <a class="text-2xl font-bold text-blue-600 flex items-center gap-2">
+         
+          <span class="flex items-center">English  <img src="assets/logo.png" alt="English Janala Logo" class="h-8 w-auto" />Janala</span>
+        </a>
+      </div>
+      
+      <!-- Right: Buttons -->
+      <div class="flex items-center gap-3">
+        <button onclick="scrollToSection('faq')" class="px-4 py-2 border-2 rounded-md text-[#4F46E5] border-[#4F46E5] flex items-center gap-1 font-medium hover:bg-[#4F46E5] hover:text-white transition">
+            <img src="assets/fa-circle-question.png" alt="Question Mark Icon" class="w-4 h-4 mr-2" />
+            FAQ
+          </button>
+          <button onclick="scrollToSection('vocabulary')" class="px-4 py-2 border-2 rounded-md text-[#4F46E5] border-[#4F46E5] flex items-center gap-1 font-medium hover:bg-[#4F46E5] hover:text-white transition">
+            <img src="assets/fa-book-open.png" alt="Open Book Icon" class="w-4 h-4 mr-2" />
+            Learn
+          </button>
+          <button id="logout-btn" class="px-4 py-2 border-2 rounded-md text-[#4F46E5] border-[#4F46E5] flex items-center gap-1 font-medium hover:bg-[#4F46E5] hover:text-white transition" onclick="logout()">
+            <img src="assets/fa-arrow-right-from-bracket.png" alt="Logout Icon" class="w-4 h-4 mr-2" /> Logout
+          </button>
+      </div>
+    </div>
+  </nav>
+  
+
+  <!-- Loading Spinner -->
+<div id="loading-spinner" class="hidden fixed inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50">
+  <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+</div>
+
+  <!-- 📚 Vocabulary Section -->
+<section id="vocabulary" class="hidden px-6 pt-28 pb-16 bg-white">
+    <!-- Heading -->
+    <h2 class="text-3xl font-bold text-center mb-6">
+      <span class="text-blue-600">Let’s</span> <span class="text-black">Learn Vocabularies</span>
+    </h2>
+  
+    <!-- Lesson Buttons -->
+    <!-- <div id="lessons-btn" class="flex flex-wrap justify-center gap-3 mb-10">
+      <button onclick="loadWordsByLesson(1, this)" class="px-4 py-2 border-2 rounded-md text-[#4F46E5] border-[#4F46E5] font-medium hover:bg-green-500 hover:text-white transition">
+        Lesson - 1
+      </button>
+      <button onclick="loadWordsByLesson(2, this)" class="px-4 py-2 border-2 rounded-md text-[#4F46E5] border-[#4F46E5] font-medium hover:bg-green-500 hover:text-white transition">
+        Lesson - 2
+      </button>
+      <button onclick="loadWordsByLesson(3, this)" class="px-4 py-2 border-2 rounded-md text-[#4F46E5] border-[#4F46E5] font-medium hover:bg-green-500 hover:text-white transition">
+        Lesson - 3
+      </button>
+      <button onclick="loadWordsByLesson(4, this)" class="px-4 py-2 border-2 rounded-md text-[#4F46E5] border-[#4F46E5] font-medium hover:bg-green-500 hover:text-white transition">
+        Lesson - 4
+      </button>
+      <button onclick="loadWordsByLesson(5, this)" class="px-4 py-2 border-2 rounded-md text-[#4F46E5] border-[#4F46E5] font-medium hover:bg-green-500 hover:text-white transition">
+        Lesson - 5
+      </button>
+      <button onclick="loadWordsByLesson(6, this)" class="px-4 py-2 border-2 rounded-md text-[#4F46E5] border-[#4F46E5] font-medium hover:bg-green-500 hover:text-white transition">
+        Lesson - 6
+      </button>
+      <button onclick="loadWordsByLesson(7, this)" class="px-4 py-2 border-2 rounded-md text-[#4F46E5] border-[#4F46E5] font-medium hover:bg-green-500 hover:text-white transition">
+        Lesson - 7
+      </button>
+    </div>
+   -->
+
+   <!-- 📘 Lesson Buttons Container -->
+<div id="lesson-buttons" class="flex flex-wrap justify-center gap-4 my-6 max-w-7xl mx-auto px-4">
+
+</div>
+<div id="vocab-content" class="hidden  p-10 bg-gray-50 text-center max-w-7xl mx-auto px-4">
+  <img src="./assets/alert-error.png" class="mx-auto w-12 mb-4" alt="warning" />
+  <p class="text-gray-500">এই Lesson এ এখনো কোনো Vocabulary যোগ করা হয়নি।</p>
+  <h2 class="text-2xl font-semibold mt-2">নেক্সটা Lesson এ যান</h2>
+</div>
+    <!-- Default Text -->
+    <div id="default-text" class="bg-gray-100 py-10 rounded-md max-w-7xl mx-auto px-4">
+      <p class="text-center text-gray-500 text-sm mb-2 bangla">আপনি এখনো কোনো Lesson Select করেননি</p>
+      <p class="text-center text-xl font-semibold bangla">একটি Lesson Select করুন।</p>
+    </div>
+  
+    <!-- Loading Spinner -->
+    <div id="loading" class="flex justify-center mt-8 hidden max-w-7xl mx-auto px-4">
+      <span class="loading loading-spinner text-primary"></span>
+    </div>
+  
+    <!-- Word Cards Container -->
+    <div id="word-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8 max-w-7xl mx-auto px-4"></div>
+  </section>
+  
+  
+
+  <!-- ❓ FAQ Section -->
+  <section id="faq" class="hidden px-6 py-16 bg-white">
+    <h2 class="text-3xl font-bold text-center mb-10">
+      <span class="text-blue-600">Frequently</span> Asked Questions
+    </h2>
+  
+    <div class="max-w-7xl mx-auto px-4 space-y-4">
+  
+      <!-- FAQ 1 -->
+      <div class="collapse collapse-plus bg-white border rounded-lg shadow-sm">
+        <input type="radio" name="faq" checked />
+        <div class="collapse-title text-lg font-medium">
+          1. What’s the difference between <code>var</code>, <code>let</code>, and <code>const</code>?
+        </div>
+        <div class="collapse-content text-gray-600">
+          <p><strong>var</strong> is function-scoped, hoisted, and can be redeclared. <strong>let</strong> and <strong>const</strong> are block-scoped, but <strong>const</strong> can’t be reassigned. Use <strong>let</strong> for mutable values and <strong>const</strong> for constants.</p>
+        </div>
+      </div>
+  
+      <!-- FAQ 2 -->
+      <div class="collapse collapse-plus bg-white border rounded-lg shadow-sm">
+        <input type="radio" name="faq" />
+        <div class="collapse-title text-lg font-medium">
+          2. What’s the difference between <code>map()</code>, <code>forEach()</code>, and <code>filter()</code>?
+        </div>
+        <div class="collapse-content text-gray-600">
+          <ul class="list-disc list-inside space-y-1">
+            <li><code>map()</code> returns a new array with transformed elements.</li>
+            <li><code>forEach()</code> just runs a function for each item (no return).</li>
+            <li><code>filter()</code> returns a new array with items that pass a test.</li>
+          </ul>
+        </div>
+      </div>
+  
+      <!-- FAQ 3 -->
+      <div class="collapse collapse-plus bg-white border rounded-lg shadow-sm">
+        <input type="radio" name="faq" />
+        <div class="collapse-title text-lg font-medium">
+          3. What are arrow functions and how are they different from regular functions?
+        </div>
+        <div class="collapse-content text-gray-600">
+          <p>Arrow functions provide a shorter syntax and don’t have their own <code>this</code>, <code>arguments</code>, or <code>super</code>. They’re best for non-method functions and callbacks.</p>
+        </div>
+      </div>
+  
+      <!-- FAQ 4 -->
+      <div class="collapse collapse-plus bg-white border rounded-lg shadow-sm">
+        <input type="radio" name="faq" />
+        <div class="collapse-title text-lg font-medium">
+          4. How do JavaScript Promises work?
+        </div>
+        <div class="collapse-content text-gray-600">
+          <p>A Promise is an object that represents the eventual result of an asynchronous operation. It can be <strong>pending</strong>, <strong>fulfilled</strong>, or <strong>rejected</strong>. Use <code>.then()</code>, <code>.catch()</code>, and <code>.finally()</code> to handle results.</p>
+        </div>
+      </div>
+  
+      <!-- FAQ 5 -->
+      <div class="collapse collapse-plus bg-white border rounded-lg shadow-sm">
+        <input type="radio" name="faq" />
+        <div class="collapse-title text-lg font-medium">
+          5. How do closures work in JavaScript?
+        </div>
+        <div class="collapse-content text-gray-600">
+          <p>A closure is when a function remembers variables from its outer scope, even after that scope has finished executing. Useful for creating private variables and function factories.</p>
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  
+  
+
+  
+  <!-- 🔻 Footer -->
+<footer class="footer border-t border-[#FFEBEB] justify-between items-start px-6 py-10  text-base-content flex flex-col md:flex-row "> 
+    <!-- Left: Logo & Info -->
+    <div class="space-y-2" style="padding-left: 100px">
+      <div class="flex items-center gap-2 text-xl font-bold">
+        <span>English</span>
+        <img src="assets/logo.png" alt="Bangla Logo" class="w-6 h-6" />
+        <span class="bangla text-lg">বাংলা</span>
+      </div>
+      <h3 class="bangla text-lg font-semibold">ইন্টার‌্যাকটিভ শিক্ষার সঙ্গী</h3>
+      <p class="text-sm text-gray-500">Providing ED-Tech Applications since 2025</p>
+    </div>
+  
+    <!-- Right: Social -->
+    <div class="text-right mt-6 md:mt-0" style="padding-right: 100px">
+      <p class="uppercase text-xs font-semibold text-gray-500 mb-2">Follow us</p>
+      <div class="flex gap-4 justify-end">
+        <a href="https://www.facebook.com/EnglishJanala/" target="_blank" rel="noopener noreferrer"><img src="assets/fb-thumb.png" alt="Facebook Icon" class="w-6 h-6" /></a>
+        <a href="https://www.youtube.com/channel/UC0aG9pQf6x3U3mQp1L9YpIQ" target="_blank" rel="noopener noreferrer"><img src="assets/youtube-thumb.png" alt="YouTube Icon" class="w-6 h-6" /></a>
+      </div>
+    </div>
+  </footer>
+  
+
+  <script>
+    
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        const offset = sectionId === 'faq' ? 60 : 0; // Adjust this value as needed for the margin
+        const elementPosition = section.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+            top: elementPosition - offset,
+            behavior: 'smooth'
+        });
+    }
+}
+  </script>
+  <script src="vocabulary.js"></script> 
+  <script src="login.js"></script>
+  <!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</body>
+</html>
